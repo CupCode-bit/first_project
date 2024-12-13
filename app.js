@@ -1,4 +1,5 @@
 const express = require("express")
+const keys = require('./config/keys');
 const path = require('path');
 const app = express()
 
@@ -6,8 +7,8 @@ const app = express()
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
-app.get('/', (req, res) => {
-    res.render('index');
-})
+app.use(express.static(path.join(__dirname, 'public')));
 
-app.listen(3005)
+app.listen(keys.PORT, () => {
+    console.log(`Server is running at http://localhost:${keys.PORT}`);
+})
