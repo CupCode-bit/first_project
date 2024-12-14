@@ -3,117 +3,255 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Page</title>
+    <title>Sign In | Your Brand</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', sans-serif;
         }
 
         body {
+            min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
-            background: linear-gradient(45deg, #4776E6, #8E54E9);
+            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
         }
 
-        .login-container {
-            background-color: white;
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        @keyframes gradient {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .signin-container {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
             width: 100%;
             max-width: 400px;
+            transform: translateY(20px);
+            animation: slideUp 0.5s ease forwards;
+            backdrop-filter: blur(10px);
         }
 
-        .login-header {
+        @keyframes slideUp {
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+            from {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+        }
+
+        .logo {
             text-align: center;
             margin-bottom: 2rem;
-        }
-
-        .login-header h1 {
             color: #333;
             font-size: 2rem;
-            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        .welcome-text {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #666;
         }
 
         .input-group {
             margin-bottom: 1.5rem;
-        }
-
-        .input-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: #555;
+            position: relative;
         }
 
         .input-group input {
             width: 100%;
-            padding: 0.8rem;
-            border: 1px solid #ddd;
-            border-radius: 5px;
+            padding: 1rem;
+            border: 2px solid #eee;
+            border-radius: 12px;
             font-size: 1rem;
-            transition: border-color 0.3s ease;
+            transition: all 0.3s ease;
+            background: white;
         }
 
         .input-group input:focus {
+            border-color: #23a6d5;
             outline: none;
-            border-color: #4776E6;
+            box-shadow: 0 0 0 3px rgba(35, 166, 213, 0.1);
         }
 
-        .login-button {
+        .input-group label {
+            position: absolute;
+            left: 1rem;
+            top: 1rem;
+            color: #999;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            pointer-events: none;
+            background: white;
+            padding: 0 0.5rem;
+        }
+
+        .input-group input:focus + label,
+        .input-group input:not(:placeholder-shown) + label {
+            top: -0.5rem;
+            left: 0.8rem;
+            font-size: 0.8rem;
+            color: #23a6d5;
+        }
+
+        .signin-button {
             width: 100%;
             padding: 1rem;
-            background: linear-gradient(45deg, #4776E6, #8E54E9);
+            background: linear-gradient(45deg, #23a6d5, #23d5ab);
             border: none;
-            border-radius: 5px;
+            border-radius: 12px;
             color: white;
             font-size: 1rem;
+            font-weight: bold;
             cursor: pointer;
-            transition: opacity 0.3s ease;
-        }
-
-        .login-button:hover {
-            opacity: 0.9;
-        }
-
-        .forgot-password {
-            text-align: center;
+            transition: all 0.3s ease;
             margin-top: 1rem;
         }
 
-        .forgot-password a {
-            color: #4776E6;
-            text-decoration: none;
+        .signin-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(35, 166, 213, 0.2);
+        }
+
+        .signin-button:active {
+            transform: translateY(0);
+        }
+
+        .additional-links {
+            margin-top: 1.5rem;
+            text-align: center;
             font-size: 0.9rem;
         }
 
-        .forgot-password a:hover {
-            text-decoration: underline;
+        .additional-links a {
+            color: #23a6d5;
+            text-decoration: none;
+            margin: 0 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .additional-links a:hover {
+            color: #23d5ab;
+        }
+
+        .remember-me {
+            display: flex;
+            align-items: center;
+            margin-top: 1rem;
+            color: #666;
+        }
+
+        .remember-me input {
+            margin-right: 0.5rem;
+        }
+
+        .social-signin {
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        .social-signin p {
+            color: #666;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .social-signin p::before,
+        .social-signin p::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            width: 45%;
+            height: 1px;
+            background: #ddd;
+        }
+
+        .social-signin p::before {
+            left: 0;
+        }
+
+        .social-signin p::after {
+            right: 0;
+        }
+
+        .social-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .social-button {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: white;
+            border: 1px solid #eee;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .social-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
     </style>
 </head>
 <body>
-    <div class="login-container">
-        <div class="login-header">
-            <h1>Welcome Back</h1>
-            <p> login to your account</p>
+    <div class="signin-container">
+        <div class="logo">
+            <span>✨</span>
+        </div>
+        <div class="welcome-text">
+            <h2>Welcome back!</h2>
+            <p>Please sign in to continue</p>
         </div>
         <form>
             <div class="input-group">
-                <label for="username">Username</label>
-                <input type="text" id="username" name="username" placeholder="Enter your username" required>
+                <input type="email" id="email" placeholder=" " required>
+                <label for="email">Email Address</label>
             </div>
             <div class="input-group">
+                <input type="password" id="password" placeholder=" " required>
                 <label for="password">Password</label>
-                <input type="password" id="password" name="password" placeholder="Enter your password" required>
             </div>
-            <button type="submit" class="login-button">Login</button>
-            <div class="forgot-password">
-                <a href="#">Forgot Password???</a>
+            <div class="remember-me">
+                <input type="checkbox" id="remember">
+                <label for="remember">Remember me</label>
+            </div>
+            <button type="submit" class="signin-button">Sign In</button>
+            <div class="additional-links">
+                <a href="#">Forgot Password?</a>
+                <span>•</span>
+                <a href="#">Create Account</a>
+            </div>
+            <div class="social-signin">
+                <p>Or continue with</p>
+                <div class="social-buttons">
+                    <div class="social-button">G</div>
+                    <div class="social-button">f</div>
+                    <div class="social-button">in</div>
+                </div>
             </div>
         </form>
     </div>
