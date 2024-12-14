@@ -3,155 +3,294 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up Page</title>
+    <title>Sign Up | Your Brand</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', sans-serif;
         }
 
         body {
+            min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
-            background: linear-gradient(45deg, #4776E6, #8E54E9);
+            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+            padding: 2rem;
+        }
+
+        @keyframes gradient {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
         }
 
         .signup-container {
-            background-color: white;
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            background: rgba(255, 255, 255, 0.95);
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
             width: 100%;
             max-width: 400px;
+            transform: translateY(20px);
+            animation: slideUp 0.5s ease forwards;
+            backdrop-filter: blur(10px);
         }
 
-        .signup-header {
+        @keyframes slideUp {
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+            from {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+        }
+
+        .logo {
             text-align: center;
             margin-bottom: 2rem;
-        }
-
-        .signup-header h1 {
             color: #333;
             font-size: 2rem;
-            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        .welcome-text {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #666;
         }
 
         .input-group {
             margin-bottom: 1.5rem;
-        }
-
-        .input-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: #555;
+            position: relative;
         }
 
         .input-group input {
             width: 100%;
-            padding: 0.8rem;
-            border: 1px solid #ddd;
-            border-radius: 5px;
+            padding: 1rem;
+            border: 2px solid #eee;
+            border-radius: 12px;
             font-size: 1rem;
-            transition: border-color 0.3s ease;
+            transition: all 0.3s ease;
+            background: white;
         }
 
         .input-group input:focus {
+            border-color: #23a6d5;
             outline: none;
-            border-color: #4776E6;
+            box-shadow: 0 0 0 3px rgba(35, 166, 213, 0.1);
         }
 
-        .signup-button {
-            width: 100%;
-            padding: 1rem;
-            background: linear-gradient(45deg, #4776E6, #8E54E9);
-            border: none;
-            border-radius: 5px;
-            color: white;
+        .input-group label {
+            position: absolute;
+            left: 1rem;
+            top: 1rem;
+            color: #999;
             font-size: 1rem;
-            cursor: pointer;
-            transition: opacity 0.3s ease;
+            transition: all 0.3s ease;
+            pointer-events: none;
+            background: white;
+            padding: 0 0.5rem;
         }
 
-        .signup-button:hover {
-            opacity: 0.9;
-        }
-
-        .login-link {
-            text-align: center;
-            margin-top: 1rem;
-        }
-
-        .login-link a {
-            color: #4776E6;
-            text-decoration: none;
-            font-size: 0.9rem;
-        }
-
-        .login-link a:hover {
-            text-decoration: underline;
+        .input-group input:focus + label,
+        .input-group input:not(:placeholder-shown) + label {
+            top: -0.5rem;
+            left: 0.8rem;
+            font-size: 0.8rem;
+            color: #23a6d5;
         }
 
         .password-requirements {
             font-size: 0.8rem;
             color: #666;
-            margin-top: 0.3rem;
+            margin-top: 0.5rem;
+            padding-left: 1rem;
         }
 
-        .terms {
-            font-size: 0.9rem;
-            color: #666;
-            text-align: center;
+        .signup-button {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(45deg, #23a6d5, #23d5ab);
+            border: none;
+            border-radius: 12px;
+            color: white;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
             margin-top: 1rem;
         }
 
-        .terms a {
-            color: #4776E6;
+        .signup-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(35, 166, 213, 0.2);
+        }
+
+        .signup-button:active {
+            transform: translateY(0);
+        }
+
+        .additional-links {
+            margin-top: 1.5rem;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        .additional-links a {
+            color: #23a6d5;
             text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .additional-links a:hover {
+            color: #23d5ab;
+        }
+
+        .terms {
+            margin-top: 1.5rem;
+            text-align: center;
+            font-size: 0.85rem;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        .terms a {
+            color: #23a6d5;
+            text-decoration: none;
+            transition: color 0.3s ease;
         }
 
         .terms a:hover {
-            text-decoration: underline;
+            color: #23d5ab;
+        }
+
+        .social-signup {
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        .social-signup p {
+            color: #666;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .social-signup p::before,
+        .social-signup p::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            width: 45%;
+            height: 1px;
+            background: #ddd;
+        }
+
+        .social-signup p::before {
+            left: 0;
+        }
+
+        .social-signup p::after {
+            right: 0;
+        }
+
+        .social-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .social-button {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: white;
+            border: 1px solid #eee;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .social-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .name-group {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .name-group .input-group {
+            flex: 1;
         }
     </style>
 </head>
 <body>
     <div class="signup-container">
-        <div class="signup-header">
-            <h1>Create Account</h1>
-            <p>Join us today! It only takes a minute</p>
+        <div class="logo">
+            <span>✨</span>
+        </div>
+        <div class="welcome-text">
+            <h2>Create Account</h2>
+            <p>Join us today and get started</p>
         </div>
         <form>
-            <div class="input-group">
-                <label for="fullname">Full Name</label>
-                <input type="text" id="fullname" name="fullname" placeholder="Enter your full name" required>
+            <div class="name-group">
+                <div class="input-group">
+                    <input type="text" id="firstname" placeholder=" " required>
+                    <label for="firstname">First Name</label>
+                </div>
+                <div class="input-group">
+                    <input type="text" id="lastname" placeholder=" " required>
+                    <label for="lastname">Last Name</label>
+                </div>
             </div>
             <div class="input-group">
+                <input type="email" id="email" placeholder=" " required>
                 <label for="email">Email Address</label>
-                <input type="email" id="email" name="email" placeholder="Enter your email" required>
             </div>
             <div class="input-group">
-                <label for="username">Username</label>
-                <input type="text" id="username" name="username" placeholder="Choose a username" required>
-            </div>
-            <div class="input-group">
+                <input type="password" id="password" placeholder=" " required>
                 <label for="password">Password</label>
-                <input type="password" id="password" name="password" placeholder="Create a password" required>
-                <p class="password-requirements">Password must be at least 8 characters long and include numbers and special characters</p>
+                <div class="password-requirements">
+                    • At least 8 characters<br>
+                    • Include numbers and special characters
+                </div>
             </div>
             <div class="input-group">
+                <input type="password" id="confirm-password" placeholder=" " required>
                 <label for="confirm-password">Confirm Password</label>
-                <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm your password" required>
             </div>
             <button type="submit" class="signup-button">Create Account</button>
-            <p class="terms">
-                By signing up, you agree to our <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>
-            </p>
-            <div class="login-link">
-                <p>Already have an account? <a href="#">Login here</a></p>
+            <div class="terms">
+                By creating an account, you agree to our<br>
+                <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>
+            </div>
+            <div class="social-signup">
+                <p>Or sign up with</p>
+                <div class="social-buttons">
+                    <div class="social-button">G</div>
+                    <div class="social-button">f</div>
+                    <div class="social-button">in</div>
+                </div>
+            </div>
+            <div class="additional-links">
+                Already have an account? <a href="#">Sign In</a>
             </div>
         </form>
     </div>
